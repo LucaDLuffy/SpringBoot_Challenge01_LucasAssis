@@ -1,4 +1,4 @@
-package br.compassweek4.carSystem.entities;
+package br.compassweek4.carSystem.domain.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
