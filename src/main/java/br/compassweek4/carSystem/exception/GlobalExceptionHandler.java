@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+
     @ExceptionHandler(InvalidDataException.class)
     public ResponseEntity<Object> handleInvalidDataException(InvalidDataException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Date: " + ex.getMessage());
@@ -20,6 +21,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleGenericException(Exception ex) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal Server Error: " + ex.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal Server Error: ");
     }
 }
+
+

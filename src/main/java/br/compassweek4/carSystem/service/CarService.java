@@ -2,6 +2,7 @@ package br.compassweek4.carSystem.service;
 
 import br.compassweek4.carSystem.domain.entities.Car;
 import br.compassweek4.carSystem.domain.entities.dto.CarDTO;
+import br.compassweek4.carSystem.exception.CarNotFoundException;
 import br.compassweek4.carSystem.exception.InvalidDataException;
 import br.compassweek4.carSystem.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,28 +18,7 @@ public class CarService {
     public CarService(CarRepository carRepository) {
         this.carRepository = carRepository;
     }
-    private CarRepository carRepository;
-    //retirar o construtor e as coisas relacionadas
-    private List<Car> cars = new ArrayList<>();
-
-    public CarService() {
-        // adicionando alguns carros à lista no construtor.
-        //data.sql inicializ de dados
-        cars.add(new Car(1L, "Camry", "Ford", "Blue","15/14"));
-        cars.add(new Car(2L, "Civic","Ford", "Blue","15/14"));
-        cars.add(new Car(3L, "Focus","Ford", "Blue","15/14"));
-    }
-
-    public Car getCarById(Long idChassi) {
-        for (Car car : cars) {
-            if (idChassi.equals(car.getIdChassi())) {
-                return car;
-            }
-        }
-        return null;
-    }
-
-
+    private final CarRepository carRepository;
 
     public Car getCarBy (Long idChassi){
         var byId = carRepository.findById(idChassi);
@@ -57,9 +37,8 @@ public class CarService {
             }
         }
         if (!validBrand) {
-            throw new InvalidDataException("The car brand is not valid.");
+            throw new CarNotFoundException("The car brand is not valid.");
         }
-
         return carRepository.save(car);
     }
 
