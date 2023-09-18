@@ -4,6 +4,7 @@ import br.compassweek4.carSystem.domain.entities.Car;
 import br.compassweek4.carSystem.domain.entities.dto.CarDTO;
 import br.compassweek4.carSystem.exception.CarNotFoundException;
 import br.compassweek4.carSystem.repository.CarRepository;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class CarService {
         return byId.get();
     }
 
-    public Car createCar(Car car) {
+    public Car createCar(@NotNull Car car) {
         String[] allowedBrands = {"Ford", "Chevrolet", "BMW", "Volvo"};
         String brand = car.getBrand();
         boolean validBrand = false;
