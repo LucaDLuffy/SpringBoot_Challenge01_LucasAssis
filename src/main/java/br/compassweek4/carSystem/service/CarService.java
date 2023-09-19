@@ -8,6 +8,9 @@ import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class CarService {
 
@@ -15,7 +18,7 @@ public class CarService {
     public CarService(CarRepository carRepository) {
         this.carRepository = carRepository;
     }
-    private final CarRepository carRepository;
+    private CarRepository carRepository;
 
     public Car getCarBy (Long idChassi){
         var byId = carRepository.findById(idChassi);
